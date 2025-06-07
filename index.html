@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -49,9 +10,9 @@ html, body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: #0e0e2e;
+  background: #0b0b1d;
   color: white;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
   overflow-x: hidden;
   display: flex;
   justify-content: center;
@@ -64,6 +25,27 @@ html, body {
   padding: 40px 20px;
   box-sizing: border-box;
   text-align: center;
+}
+
+.download-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #a000ff, #ff00cc);
+  color: white;
+  padding: 22px 50px;
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 60px;
+  box-shadow: 0 0 25px rgba(160, 0, 255, 0.5), 0 0 40px rgba(255, 0, 204, 0.3);
+  transition: all 0.3s ease-in-out;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  letter-spacing: 1px;
+}
+
+.download-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 40px rgba(255, 0, 255, 0.8), 0 0 70px rgba(160, 0, 255, 0.6);
+  background: linear-gradient(135deg, #ff00cc, #a000ff);
 }
 </style>
 <style>
@@ -71,9 +53,9 @@ html, body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: #0e0e2e;
+  background: #0b0b1d;
   color: white;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
   overflow-x: hidden;
   display: flex;
   justify-content: center;
@@ -86,6 +68,27 @@ html, body {
   padding: 40px 20px;
   box-sizing: border-box;
   text-align: center;
+}
+
+.download-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #a000ff, #ff00cc);
+  color: white;
+  padding: 22px 50px;
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 60px;
+  box-shadow: 0 0 25px rgba(160, 0, 255, 0.5), 0 0 40px rgba(255, 0, 204, 0.3);
+  transition: all 0.3s ease-in-out;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  letter-spacing: 1px;
+}
+
+.download-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 40px rgba(255, 0, 255, 0.8), 0 0 70px rgba(160, 0, 255, 0.6);
+  background: linear-gradient(135deg, #ff00cc, #a000ff);
 }
 </style>
 </head>
@@ -194,45 +197,9 @@ html, body {
   
   
 
-<script>
-  function createStar() {
-    const star = document.createElement('div');
-    star.classList.add('stars');
 
-    const size = Math.random() * 2 + 1;
-    const delay = Math.random() * 20;
-    const duration = Math.random() * 10 + 5;
-    const top = Math.random() * 100;
-    const left = Math.random() * 100;
-    const colorHue = Math.floor(Math.random() * 360);
 
-    star.style.width = `${size}px`;
-    star.style.height = `${size}px`;
-    star.style.top = `${top}%`;
-    star.style.left = `${left}%`;
-    star.style.animationDelay = `${delay}s`;
-    star.style.animationDuration = `${duration}s`;
-    star.style.background = `hsl(${colorHue}, 100%, 85%)`;
-    star.style.boxShadow = `0 0 6px hsl(${colorHue}, 100%, 85%)`;
 
-    document.body.appendChild(star);
-  }
-
-  for (let i = 0; i < 150; i++) {
-    createStar();
-  }
-</script>
-
-<script>
-  function triggerDownload() {
-    const link = document.createElement('a');
-    link.href = 'https://download1503.mediafire.com/dyd9a11w3hwg/k1tb6vkvmkz973j/loader.exe';
-    link.download = 'loader.exe';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-</script>
 
 
 
